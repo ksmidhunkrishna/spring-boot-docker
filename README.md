@@ -34,7 +34,7 @@ From the cmd enter the command where –f <FILENAME>
 
 This will execute the commands from the docker file. Initially running may take some time as it downloads a **openjdk** from the repository.
 
-    docker image ls_
+    docker image ls
 
 This command will give you list of images you have and you can find one with the name **docker-spring-boot-user.**
 
