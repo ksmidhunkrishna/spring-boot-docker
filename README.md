@@ -60,7 +60,7 @@ You can import the sql by following command
 
 **Running the Project inside the Docker**
 
-`docker run -t --link mysql-docker:mysql -p 8080:8080 _docker-spring-boot-user`_
+`docker run -t --link mysql-docker:mysql -p 8080:8080 docker-spring-boot-user`
 
 **--link** will link the MySQL container and will be exposing the port 8080
 
