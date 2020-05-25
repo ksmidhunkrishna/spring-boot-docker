@@ -17,7 +17,6 @@ public class LoginService {
     public Login checkUsername(String username) {
 
         Optional<Login> loginDetails = loginRepository.findByUsername(username);
-        System.out.println(loginDetails.isPresent());
         if (!loginDetails.isPresent()) throw new UserNotFoundException(username);
 
         return loginDetails.get();

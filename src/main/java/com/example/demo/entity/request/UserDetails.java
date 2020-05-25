@@ -1,7 +1,6 @@
 package com.example.demo.entity.request;
 
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class UserDetails {

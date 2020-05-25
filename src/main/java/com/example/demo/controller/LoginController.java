@@ -3,25 +3,30 @@ package com.example.demo.controller;
 import com.example.demo.entity.Login;
 import com.example.demo.entity.request.UserDetails;
 import com.example.demo.service.LoginService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@Api(value = "Operation on user data",tags = "User Operations")
 @RestController
 public class LoginController {
     @Autowired
     LoginService loginService;
 
-
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved user data"),
+            @ApiResponse(code = 400, message = "No username found.")
+    })
+    @ApiOperation(value = "Check if the user exist", response = String.class)
     @PostMapping("/user")
-    @ApiOperation(value = "View a list of available products", response = Iterable.class)
-    public Login getUserDetails(@Validated @RequestBody UserDetails userDetails) {
-        System.out.println("user" + userDetails.getUsername());
-        return loginService.checkUsername(userDetails.getUsername());
+    public ResponseEntity<String> getUserDetails(@ApiParam(value = "username to search", required = true)
+                                                 @Validated @RequestBody UserDetails userDetails) {
+        String username = loginService.checkUsername(userDetails.getUsername()).getName();
+        return new ResponseEntity<>("Hello " + username, HttpStatus.OK);
     }
 }

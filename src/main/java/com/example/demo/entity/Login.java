@@ -1,17 +1,25 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@ApiModel(description = "All details about the user. ")
 public class Login {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonIgnore
     private int id;
+    @ApiModelProperty(notes = "The username")
     private String username;
-    private String Name;
+    @ApiModelProperty(notes = "The name")
+    private String name;
 
     public int getId() {
         return id;
@@ -30,19 +38,11 @@ public class Login {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Login{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", Name='" + Name + '\'' +
-                '}';
-    }
 }
